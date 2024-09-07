@@ -1,0 +1,11 @@
+LSL X8, X3, #3        // X8 = i * 8 (offset for A[i])
+ADD X8, X6, X8        // X8 = &A[i]
+LDUR X9, [X8, #0]     // X9 = A[i]
+
+LSL X10, X4, #3       // X10 = j * 8 (offset for A[j])
+ADD X10, X6, X10      // X10 = &A[j]
+LDUR X11, [X10, #0]   // X11 = A[j]
+
+ADD X12, X9, X11      // X12 = A[i] + A[j]
+
+STUR X12, [X7, #64]   // B[8] = A[i] + A[j]
