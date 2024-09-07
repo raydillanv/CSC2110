@@ -1,0 +1,20 @@
+module logic_circuit (
+    input wire A,  // Input A
+    input wire B,  // Input B
+    input wire C,  // Input C
+    output wire F  // Output F
+);
+
+    wire and_result;   // Intermediate wire for A AND C
+    wire nor_result;   // Intermediate wire for (A AND C) NOR B
+
+    // Step 1: AND operation
+    assign and_result = A & C;
+
+    // Step 2: NOR operation
+    assign nor_result = ~(and_result | B);
+
+    // Step 3: XOR the result with C
+    assign F = nor_result ^ C;
+
+endmodule

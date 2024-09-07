@@ -1,0 +1,25 @@
+module logic_circuit (
+    input wire A,  // Input A
+    input wire B,  // Input B
+    input wire C,  // Input C
+    input wire D,  // Input D
+    output wire F  // Output F
+);
+
+    wire not_A;       // Intermediate wire for NOT A
+    wire nand_result; // Intermediate wire for B NAND C
+    wire or_result;   // Intermediate wire for A' OR (B NAND C)
+
+    // Step 1: NOT operation on A
+    assign not_A = ~A;
+
+    // Step 2: NAND operation between B and C
+    assign nand_result = ~(B & C);
+
+    // Step 3: OR operation between not_A and nand_result
+    assign or_result = not_A | nand_result;
+
+    // Step 4: XOR the result with D
+    assign F = or_result ^ D;
+
+endmodule
