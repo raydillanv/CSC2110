@@ -1,0 +1,5 @@
+
+*.zip
+/Cyberduck.app
+/Sublime Text.app
+.DS_Store

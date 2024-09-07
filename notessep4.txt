@@ -1,0 +1,116 @@
+Machine Language
+
+In a high level language 
+
+a = b+c;
+
+at the lowest level,
+you need to be a b and c into registers
+
+the = and the + are implemented with instructions
+
+Say you put b and c, x1 and x2
+
+In machine language
+
+add x0, x1, x2 // x0 = x1 + x2 same statement
+
+Lets say we want to do b^2 + c
+
+add only take 3 parameters and they are always in the same order
+
+so do:
+
+mul x1, x1, x1 // x1 = x1 * x1
+
+add x0, x1, x2 // x0 = x1 + x2
+
+sub 
+
+div / not an instruction
+sdiv / signed division (for negative numbers)
+
+Another Ex: 
+x0, x1, x2
+a = b + 3;
+
+mul
+
+add x0, x1, #3
+
+storing the result in a or x0, so we are adding 3 to the content of x1 and storing it in x0.
+
+we have includive and eclusive or 
+
+inclusive is orr
+
+and the exclusive is eor
+
+Ex: 
+            x0           x1
+long int f(long int a, long int b) 
+
+z=f(5,7) 
+
+First parameter is x0 and second is x1
+
+If we need a constant 
+ 2 parameters ( destination , #constant) 
+
+mov x3, #15   the value 15 is loaded into x3
+
+Memory is never empty, it always has a value, it may be random, or left over from a previous program
+
+F> 50
+
+Breakpoint 1, 0x0000000000410210 in ftoc ()
+1: x/i $pc
+=> 0x410210 <ftoc>:	sub	x0, x0, #0x20
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0xfffff7e43370
+6: /x $x1 = 0x5
+7: /x $x0 = 0x32 -- This is equal to 50
+(gdb) si
+0x0000000000410214 in ftoc ()
+1: x/i $pc
+=> 0x410214 <ftoc+4>:	mov	x1, #0x5                   	// #5
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0xfffff7e43370
+6: /x $x1 = 0x5 
+7: /x $x0 = 0x12 -- This is equal to 18
+
+0x0000000000410218 in ftoc ()
+1: x/i $pc
+=> 0x410218 <ftoc+8>:	mul	x0, x0, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0xfffff7e43370
+6: /x $x1 = 0x5
+7: /x $x0 = 0x12
+(gdb) si
+0x000000000041021c in ftoc ()
+1: x/i $pc
+=> 0x41021c <ftoc+12>:	mov	x2, #0x9                   	// #9
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0xfffff7e43370
+6: /x $x1 = 0x5
+7: /x $x0 = 0x5a
+
+mul and div do not accept immediate opperands because they are too big
+
+(gdb) continue
+Continuing.
+50 F = 10 C
+
+Now t1sdm 
+
+A subtract the quotient is your remainder
+
+

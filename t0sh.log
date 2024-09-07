@@ -1,0 +1,31 @@
+[ec2-user@ip-172-31-39-57 ~]$ cd tutorials/t0
+[ec2-user@ip-172-31-39-57 t0]$ make clean
+rm -f *.o t0 t0s[0-9] t0s? t0[0-9]s? *.o *~
+[ec2-user@ip-172-31-39-57 t0]$ make t0sh
+gcc -g  -c t0sh.c
+gcc -g  -c t0shm.cpp
+c++  -o t0sh t0sh.o t0shm.o
+[ec2-user@ip-172-31-39-57 t0]$ ./t0sh
+Count Permutations, perm(n, k)
+Please enter whole numbers separated by sopaces, 'q' to quit.
+
+n k > 3 6
+perm(3, 6) = 0 computed in 1.017e-06 seconds 
+n k > 2 7
+perm(2, 7) = 0 computed in 1.116e-06 seconds 
+n k > 12 4
+perm(12, 4) = 11880 computed in 9.36e-07 seconds 
+n k > 2 0
+perm(2, 0) = 1 computed in 1.075e-06 seconds 
+n k > 3.1459 6002
+[ec2-user@ip-172-31-39-57 t0]$ ./t0sh
+Count Permutations, perm(n, k)
+Please enter whole numbers separated by sopaces, 'q' to quit.
+
+n k > 34442233 23
+perm(34442233, 23) = 9171308792579620864 computed in 1.116e-06 seconds 
+n k > 3444 2345
+perm(3444, 2345) = 0 computed in 4.8714e-05 seconds 
+n k > 3444 2
+perm(3444, 2) = 11857692 computed in 1.042e-06 seconds 
+n k > 
