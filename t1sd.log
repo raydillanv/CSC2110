@@ -1,0 +1,636 @@
+A newer release of "Amazon Linux" is available.
+  Version 2023.5.20240903:
+Run "/usr/bin/dnf check-release-update" for full release and version update info
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+Last login: Wed Sep 11 22:19:20 2024 from 142.147.68.251
+[ec2-user@ip-172-31-39-57 ~]$ cd /tutorials/t1
+-bash: cd: /tutorials/t1: No such file or directory
+[ec2-user@ip-172-31-39-57 ~]$ cd tutorials
+[ec2-user@ip-172-31-39-57 tutorials]$ cd t1
+[ec2-user@ip-172-31-39-57 t1]$ make
+usage:
+	make t1    #tutorial t1
+	make t1sa  #solution a
+	make t1sb  #solution b
+	...
+	make clean #tidy up
+[ec2-user@ip-172-31-39-57 t1]$ make t1sa
+make: *** No rule to make target 't1sa'.  Stop.
+[ec2-user@ip-172-31-39-57 t1]$ 
+[ec2-user@ip-172-31-39-57 t1]$ run 20 7
+-bash: run: command not found
+[ec2-user@ip-172-31-39-57 t1]$ make t1
+gcc  -c t1.s
+gcc -g  -c t1m.cpp
+c++  -o t1 t1.o t1m.o
+[ec2-user@ip-172-31-39-57 t1]$ run 20 7 
+-bash: run: command not found
+[ec2-user@ip-172-31-39-57 t1]$ -c
+-bash: -c: command not found
+[ec2-user@ip-172-31-39-57 t1]$ t1.s
+-bash: t1.s: command not found
+[ec2-user@ip-172-31-39-57 t1]$ make t1sd.s
+make: Nothing to be done for 't1sd.s'.
+[ec2-user@ip-172-31-39-57 t1]$ make
+usage:
+	make t1    #tutorial t1
+	make t1sa  #solution a
+	make t1sb  #solution b
+	...
+	make clean #tidy up
+[ec2-user@ip-172-31-39-57 t1]$ make clean
+rm -f *.o t1 t1s[0-9] t1s? t1[0-9]s? *.o *~
+[ec2-user@ip-172-31-39-57 t1]$ make t1
+gcc  -c t1.s
+gcc -g  -c t1m.cpp
+c++  -o t1 t1.o t1m.o
+[ec2-user@ip-172-31-39-57 t1]$ gcc
+gcc: fatal error: no input files
+compilation terminated.
+[ec2-user@ip-172-31-39-57 t1]$ gcc -c t1.s
+[ec2-user@ip-172-31-39-57 t1]$ run 20 7
+-bash: run: command not found
+[ec2-user@ip-172-31-39-57 t1]$ make t1
+c++  -o t1 t1.o t1m.o
+[ec2-user@ip-172-31-39-57 t1]$ gcc  -c t1.s
+[ec2-user@ip-172-31-39-57 t1]$ gcc -g  -c t1m.cpp
+[ec2-user@ip-172-31-39-57 t1]$ ./t1c++  -o t1 t1.o t1m.o
+-bash: ./t1c++: No such file or directory
+[ec2-user@ip-172-31-39-57 t1]$ make t1
+c++  -o t1 t1.o t1m.o
+[ec2-user@ip-172-31-39-57 t1]$ ./t1
+Convert temperatures, F to C
+Please enter integers, 'q' to quit.
+
+F> 20 7
+20 F = -6 C
+F> 7 F = -13 C
+F> 1
+1 F = -17 C
+F> q
+[ec2-user@ip-172-31-39-57 t1]$ make t1
+make: 't1' is up to date.
+[ec2-user@ip-172-31-39-57 t1]$ ./t1sd.s
+-bash: ./t1sd.s: Permission denied
+[ec2-user@ip-172-31-39-57 t1]$ make t2sd
+make: *** No rule to make target 't2sd'.  Stop.
+[ec2-user@ip-172-31-39-57 t1]$ make t1sd
+gcc  -c t1sd.s
+gcc -g  -c t1sdm.cpp
+c++  -o t1sd t1sd.o t1sdm.o
+[ec2-user@ip-172-31-39-57 t1]$ ./t1sd.s
+-bash: ./t1sd.s: Permission denied
+[ec2-user@ip-172-31-39-57 t1]$ ./t1
+Convert temperatures, F to C
+Please enter integers, 'q' to quit.
+
+F> q
+[ec2-user@ip-172-31-39-57 t1]$ ./t1sd
+Remainder of n/d.
+Please enter integers, 'q' to quit.
+
+n d> 20 7
+ 20 % 7 = 13
+n d> q
+[ec2-user@ip-172-31-39-57 t1]$ gdb t1sd
+GNU gdb (GDB) Amazon Linux 12.1-5.amzn2023.0.3
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "aarch64-amazon-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from t1sd...
+(gdb) disassemble remain
+Dump of assembler code for function remain:
+   0x0000000000410210 <+0>:	sdiv	x2, x0, x1
+   0x0000000000410214 <+4>:	mul	x3, x2, x1
+   0x0000000000410218 <+8>:	sub	x0, x0, x1
+   0x000000000041021c <+12>:	ret
+End of assembler dump.
+(gdb) break 0x0000000000410210
+Function "0x0000000000410210" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) y
+Breakpoint 1 (0x0000000000410210) pending.
+(gdb) run
+Starting program: /home/ec2-user/tutorials/t1/t1sd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
+Remainder of n/d.
+Please enter integers, 'q' to quit.
+
+n d> 20 7
+ 20 % 7 = 13
+n d> q
+[Inferior 1 (process 614664) exited normally]
+Missing separate debuginfos, use: dnf debuginfo-install glibc-2.34-52.amzn2023.0.11.aarch64 libgcc-11.4.1-2.amzn2023.0.2.aarch64 libstdc++-11.4.1-2.amzn2023.0.2.aarch64
+(gdb) break 0x0000000000410210
+Function "0x0000000000410210" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) n
+(gdb) disassemble remain
+Dump of assembler code for function remain:
+   0x0000000000410210 <+0>:	sdiv	x2, x0, x1
+   0x0000000000410214 <+4>:	mul	x3, x2, x1
+   0x0000000000410218 <+8>:	sub	x0, x0, x1
+   0x000000000041021c <+12>:	ret
+End of assembler dump.
+(gdb) break 0x0000000000410210
+Function "0x0000000000410210" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) n
+(gdb) break *0x0000000000410210
+Breakpoint 2 at 0x410210
+(gdb) run
+Starting program: /home/ec2-user/tutorials/t1/t1sd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
+Remainder of n/d.
+Please enter integers, 'q' to quit.
+
+n d> 20 7
+
+Breakpoint 2, 0x0000000000410210 in remain ()
+1: x/i $pc
+=> 0x410210 <remain>:	sdiv	x2, x0, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0xfffff7e43370
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+(gdb) si
+0x0000000000410214 in remain ()
+1: x/i $pc
+=> 0x410214 <remain+4>:	mul	x3, x2, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+(gdb) si
+0x0000000000410218 in remain ()
+1: x/i $pc
+=> 0x410218 <remain+8>:	sub	x0, x0, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xe
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 614730] will be killed.
+
+Quit anyway? (y or n) n
+Not confirmed.
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 614730] will be killed.
+
+Quit anyway? (y or n) y
+[ec2-user@ip-172-31-39-57 t1]$ make clean
+rm -f *.o t1 t1s[0-9] t1s? t1[0-9]s? *.o *~
+[ec2-user@ip-172-31-39-57 t1]$ make t1sd
+gcc  -c t1sd.s
+gcc -g  -c t1sdm.cpp
+c++  -o t1sd t1sd.o t1sdm.o
+[ec2-user@ip-172-31-39-57 t1]$ ./t1sd
+Remainder of n/d.
+Please enter integers, 'q' to quit.
+
+n d> 20 7
+ 20 % 7 = 13
+n d> q
+[ec2-user@ip-172-31-39-57 t1]$ gdb t1sd
+GNU gdb (GDB) Amazon Linux 12.1-5.amzn2023.0.3
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "aarch64-amazon-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from t1sd...
+(gdb) q
+[ec2-user@ip-172-31-39-57 t1]$ make clean
+rm -f *.o t1 t1s[0-9] t1s? t1[0-9]s? *.o *~
+[ec2-user@ip-172-31-39-57 t1]$ gdb t1sd
+GNU gdb (GDB) Amazon Linux 12.1-5.amzn2023.0.3
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "aarch64-amazon-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+t1sd: No such file or directory.
+(gdb) q
+[ec2-user@ip-172-31-39-57 t1]$ make clean
+rm -f *.o t1 t1s[0-9] t1s? t1[0-9]s? *.o *~
+[ec2-user@ip-172-31-39-57 t1]$ make t1sd
+gcc  -c t1sd.s
+gcc -g  -c t1sdm.cpp
+c++  -o t1sd t1sd.o t1sdm.o
+[ec2-user@ip-172-31-39-57 t1]$ gdb t1sd
+GNU gdb (GDB) Amazon Linux 12.1-5.amzn2023.0.3
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "aarch64-amazon-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from t1sd...
+(gdb) disassemble remain
+Dump of assembler code for function remain:
+   0x0000000000410210 <+0>:	sdiv	x2, x0, x1
+   0x0000000000410214 <+4>:	mul	x3, x2, x1
+   0x0000000000410218 <+8>:	sub	x0, x0, x1
+   0x000000000041021c <+12>:	ret
+End of assembler dump.
+(gdb) break *0x0000000000410210
+Breakpoint 1 at 0x410210
+(gdb) run
+Starting program: /home/ec2-user/tutorials/t1/t1sd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
+Remainder of n/d.
+Please enter integers, 'q' to quit.
+
+n d> 20 7
+
+Breakpoint 1, 0x0000000000410210 in remain ()
+1: x/i $pc
+=> 0x410210 <remain>:	sdiv	x2, x0, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0xfffff7e43370
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+Missing separate debuginfos, use: dnf debuginfo-install glibc-2.34-52.amzn2023.0.11.aarch64 libgcc-11.4.1-2.amzn2023.0.2.aarch64 libstdc++-11.4.1-2.amzn2023.0.2.aarch64
+(gdb) si
+0x0000000000410214 in remain ()
+1: x/i $pc
+=> 0x410214 <remain+4>:	mul	x3, x2, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+(gdb) si
+0x0000000000410218 in remain ()
+1: x/i $pc
+=> 0x410218 <remain+8>:	sub	x0, x0, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xe
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+(gdb) si
+0x000000000041021c in remain ()
+1: x/i $pc
+=> 0x41021c <remain+12>:	ret
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xe
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0xd
+(gdb) q
+A debugging session is active.
+
+	Inferior 1 [process 614894] will be killed.
+
+Quit anyway? (y or n) y
+[ec2-user@ip-172-31-39-57 t1]$ make t1sd
+make: 't1sd' is up to date.
+[ec2-user@ip-172-31-39-57 t1]$ ./t1sd
+Remainder of n/d.
+Please enter integers, 'q' to quit.
+
+n d> 20 7
+ 20 % 7 = 13
+n d> q
+[ec2-user@ip-172-31-39-57 t1]$ make clean
+rm -f *.o t1 t1s[0-9] t1s? t1[0-9]s? *.o *~
+[ec2-user@ip-172-31-39-57 t1]$ gdb t1sd
+GNU gdb (GDB) Amazon Linux 12.1-5.amzn2023.0.3
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "aarch64-amazon-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+t1sd: No such file or directory.
+(gdb) disassemble remain
+No symbol table is loaded.  Use the "file" command.
+(gdb) disassemble remain
+No symbol table is loaded.  Use the "file" command.
+(gdb) q
+[ec2-user@ip-172-31-39-57 t1]$ make t1sd
+gcc  -c t1sd.s
+gcc -g  -c t1sdm.cpp
+c++  -o t1sd t1sd.o t1sdm.o
+[ec2-user@ip-172-31-39-57 t1]$ gdb disassemble remain
+GNU gdb (GDB) Amazon Linux 12.1-5.amzn2023.0.3
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "aarch64-amazon-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+disassemble: No such file or directory.
+/home/ec2-user/tutorials/t1/remain: No such file or directory.
+(gdb) q
+[ec2-user@ip-172-31-39-57 t1]$ make clean
+rm -f *.o t1 t1s[0-9] t1s? t1[0-9]s? *.o *~
+[ec2-user@ip-172-31-39-57 t1]$ make t1sd
+gcc  -c t1sd.s
+gcc -g  -c t1sdm.cpp
+c++  -o t1sd t1sd.o t1sdm.o
+[ec2-user@ip-172-31-39-57 t1]$ ./t1sd
+Remainder of n/d.
+Please enter integers, 'q' to quit.
+
+n d> q
+[ec2-user@ip-172-31-39-57 t1]$ gdv t1sd
+-bash: gdv: command not found
+[ec2-user@ip-172-31-39-57 t1]$ gdb t1sd
+GNU gdb (GDB) Amazon Linux 12.1-5.amzn2023.0.3
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "aarch64-amazon-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from t1sd...
+(gdb) disassemble remain
+Dump of assembler code for function remain:
+   0x0000000000410210 <+0>:	sdiv	x2, x0, x1
+   0x0000000000410214 <+4>:	mul	x3, x2, x1
+   0x0000000000410218 <+8>:	sub	x0, x0, x3
+   0x000000000041021c <+12>:	ret
+End of assembler dump.
+(gdb) break *0x0000000000410210
+Breakpoint 1 at 0x410210
+(gdb) run
+Starting program: /home/ec2-user/tutorials/t1/t1sd 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
+Remainder of n/d.
+Please enter integers, 'q' to quit.
+
+n d> 20 7
+
+Breakpoint 1, 0x0000000000410210 in remain ()
+1: x/i $pc
+=> 0x410210 <remain>:	sdiv	x2, x0, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0xfffff7e43370
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+Missing separate debuginfos, use: dnf debuginfo-install glibc-2.34-52.amzn2023.0.11.aarch64 libgcc-11.4.1-2.amzn2023.0.2.aarch64 libstdc++-11.4.1-2.amzn2023.0.2.aarch64
+(gdb) si
+0x0000000000410214 in remain ()
+1: x/i $pc
+=> 0x410214 <remain+4>:	mul	x3, x2, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+(gdb) si
+0x0000000000410218 in remain ()
+1: x/i $pc
+=> 0x410218 <remain+8>:	sub	x0, x0, x3
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xe
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+(gdb) si
+0x000000000041021c in remain ()
+1: x/i $pc
+=> 0x41021c <remain+12>:	ret
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xe
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x6
+(gdb) continue
+Continuing.
+ 20 % 7 = 6
+n d> 20 7
+
+Breakpoint 1, 0x0000000000410210 in remain ()
+1: x/i $pc
+=> 0x410210 <remain>:	sdiv	x2, x0, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0xfffff7e43370
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+(gdb) si
+0x0000000000410214 in remain ()
+1: x/i $pc
+=> 0x410214 <remain+4>:	mul	x3, x2, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+(gdb) si
+0x0000000000410218 in remain ()
+1: x/i $pc
+=> 0x410218 <remain+8>:	sub	x0, x0, x3
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xe
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x14
+(gdb) si
+0x000000000041021c in remain ()
+1: x/i $pc
+=> 0x41021c <remain+12>:	ret
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xe
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x6
+(gdb) si
+0x00000000004102b0 in main () at t1sdm.cpp:21
+21	    r = remain(n, d);
+1: x/i $pc
+=> 0x4102b0 <main()+144>:	str	x0, [sp, #40]
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xe
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x6
+(gdb) si
+22	    cout << " " << n << " % " << d
+1: x/i $pc
+=> 0x4102b4 <main()+148>:	adrp	x0, 0x420000 <_IO_stdin_used>
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xe
+5: /x $x2 = 0x2
+6: /x $x1 = 0x7
+7: /x $x0 = 0x6
+(gdb) continue
+Continuing.
+ 20 % 7 = 6
+n d> 20 2
+
+Breakpoint 1, 0x0000000000410210 in remain ()
+1: x/i $pc
+=> 0x410210 <remain>:	sdiv	x2, x0, x1
+2: /x $x5 = 0x4401a0
+3: /x $x4 = 0x0
+4: /x $x3 = 0xa
+5: /x $x2 = 0xfffff7e43370
+6: /x $x1 = 0x2
+7: /x $x0 = 0x14
+(gdb) continue
+Continuing.
+ 20 % 2 = 0
+n d> q
+[Inferior 1 (process 615263) exited normally]
+(gdb) q
+[ec2-user@ip-172-31-39-57 t1]$ make t1sd
+make: 't1sd' is up to date.
+[ec2-user@ip-172-31-39-57 t1]$ make clean
+rm -f *.o t1 t1s[0-9] t1s? t1[0-9]s? *.o *~
+[ec2-user@ip-172-31-39-57 t1]$ make t1sd
+gcc  -c t1sd.s
+gcc -g  -c t1sdm.cpp
+c++  -o t1sd t1sd.o t1sdm.o
+[ec2-user@ip-172-31-39-57 t1]$ ./t1sd
+Remainder of n/d.
+Please enter integers, 'q' to quit.
+
+n d> 20 2
+ 20 % 2 = 0
+n d> 30 5
+ 30 % 5 = 0
+n d> 40 8
+ 40 % 8 = 0
+n d> 9 2
+ 9 % 2 = 1
+n d> 501 3
+ 501 % 3 = 0
+n d> 33 2
+ 33 % 2 = 1
+n d> 2024554 6
+ 2024554 % 6 = 4
+n d> 1776 1832\
+ 1776 % 1832 = 1776
+n d> [ec2-user@ip-172-31-39-57 t1]$ make clean
+rm -f *.o t1 t1s[0-9] t1s? t1[0-9]s? *.o *~
+[ec2-user@ip-172-31-39-57 t1]$ make t1sd
+gcc  -c t1sd.s
+gcc -g  -c t1sdm.cpp
+c++  -o t1sd t1sd.o t1sdm.o
+[ec2-user@ip-172-31-39-57 t1]$ ./t1sd
+Remainder of n/d.
+Please enter integers, 'q' to quit.
+
+n d> 7765 3 
+ 7765 % 3 = 1
+n d> 1990 2730
+ 1990 % 2730 = 1990
+n d> 1 1
+ 1 % 1 = 0
+n d> 23 0
+ 23 % 0 = 23
+n d> q
+[ec2-user@ip-172-31-39-57 t1]$ q
+-bash: q: command not found
+[ec2-user@ip-172-31-39-57 t1]$ make clean
+rm -f *.o t1 t1s[0-9] t1s? t1[0-9]s? *.o *~
+[ec2-user@ip-172-31-39-57 t1]$ This is one long log
+-bash: This: command not found
+[ec2-user@ip-172-31-39-57 t1]$ print hello world
+-bash: print: command not found
+[ec2-user@ip-172-31-39-57 t1]$ print "Hello" 
+-bash: print: command not found
+[ec2-user@ip-172-31-39-57 t1]$ ill google it...
+-bash: ill: command not found
+[ec2-user@ip-172-31-39-57 t1]$ 

@@ -1,0 +1,87 @@
+Conditional statements
+
+if (b == 0) { 
+    return 1;
+3
+if ( b == 1 ){
+    return a;
+}
+}
+
+What will you see when a machine runs code?
+
+Exponent:
+
+cmp x1, #0 // compare x1 with 0
+
+b.1t zero // if x1 is 0, branch to zero
+
+mov x2, #1 // x2 = 1
+b.eq return // if x1 == 0, branch to return 
+
+
+
+4 flags
+
+You cant change these flags unless you use a special instruction
+you cant branch to a flag.
+
+Another way of setting the flags is to use the cmp instruction
+Or add an s to the end of the instruction, it sets the flags based on the outcome of that operation. 
+
+Loop: 
+    subs x1, x1, #1 // x1 = x1 - 1
+    mul x2, x0 , x2 // x2 = x0 * x2
+    b.gt loop // if x1 > 0, branch to loop
+
+n, z, c, v
+0  0  0  0
+
+n: negative
+z: zero
+c: carry
+v: overflow
+
+b.gt loop // if x1 > 0, branch to loop
+
+Manipulating Bits Directly
+
+x1 00110100
+x2 00010010
+
+and x3, x2, x1 // x3 = x2 & x1
+x3 00010000
+
+in hex 
+34 & 12 = 10
+
+orr x3, x2, x1 // x3 = x2 | x1
+x3 00110110
+
+xor x3, x2, x1 // x3 = x2 ^ x1
+x3 00100110
+
+eor x3, x2, x1 // x3 = x2 ^ x1
+x3 00100110
+
+34 hex in decimal is 52
+
+68 hex in decimal is 104 
+
+lsl x3, x1, #1
+x3 01101000 // lost a 0 on the left add one on the right
+
+lsr x3, x1, #2 // x3 = x1 >> 2
+x3 00001101
+
+asr x3, x1, #2 // x3 = x1 >> 2
+x3 11110101
+
+52 -14 -7
+
+rol x3, x2 #1 // x3 = x2 rol 1
+
+rolling to the left by 7 and rolling to the right by 15 is the same thing becuase 
+7 % 8 = 15 % 8
+
+
