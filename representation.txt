@@ -1,0 +1,61 @@
+Monday missed classes
+
+Signed Representation 
+
+00011010 1A 26
+
+-26 
+
+Sign in magnitude
+10011010 
+
+1's complement
+10011011
+
+the problem because there are 2 representations of zero 
+
+positive and negatice 0 youre going to have 2 representations of zero
+
+2's complement
+10011100     
+flip the bits and add 1
+
+another way is to add the positive and negative 0 together and divide by 2
+
+00011010
+11100101
++
+11100110 
+
+Whays of swapping between positive and negative numbers
+
+Compare two values 
+x = 26 00011010
+y = -26 11100110
+
+NZCV
+0 1 1 0
+
+They are equivalent despite the fact that they are different representations of the same number
+
+
+UTF 
+
+0011 0000 0111 0100 
+
+ぴ　
+bits are 
+
+1110 0011 1000 0000 1011 1100
+
+
+
+17.625, swapping decimals to binary
+
+17.625 = 10001.101
+
+8 D hex code 
+
+hex 25.7 = 0010 0101 . 0111
+
+32+4+1. 

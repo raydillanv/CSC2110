@@ -1,0 +1,410 @@
+2.7, 10-16; 2.18-21 
+
+CSC 2110 Hooper 
+
+ 
+
+2.7: Translate 0xabcdef12 to decimal 
+
+2882400018 
+
+2.9-10: For each LEGv8 instruction in Exercise 2.9, show the value of the opcode (Op), source register (Rn), and target register (Rd or Rt) fields. For the I-type instructions, show the value of the immediate field, and for the R-type instructions, show the value of the second source register (Rm). 
+
+ 
+
+	2.9:  
+X9 = A + 8;  
+
+X10 = A; *(X9) = X10; 
+
+X9 = *(X9);  
+
+f = X9 + X10; 
+
+ 
+
+2.10: 
+
+ADDI X9, X6, #8 (I-type) 
+
+Op (Opcode): This is an immediate add instruction, so the opcode is for ADDI. 
+
+Rn (Source Register 1): X6 (Base address of array A) 
+
+Rd (Destination Register): X9 
+
+Immediate Field: 8 
+
+ 
+
+ADD X10, X6, XZR (R-type) 
+
+Op (Opcode): This is a register add instruction, so the opcode is for ADD. 
+
+Rn (Source Register 1): X6 
+
+Rm (Source Register 2): XZR 
+
+Rd (Destination Register): X10 
+
+ 
+
+STUR X10, [X9, #0] (D-type) 
+
+Op (Opcode): This is a store register instruction, so the opcode is for STUR. 
+
+Rn (Base Register): X9 
+
+Rt (Source Register): X10 
+
+Immediate Field: 0 
+
+ 
+
+LDUR X9, [X9, #0] (D-type) 
+
+Op (Opcode): This is a load register instruction, so the opcode is for LDUR. 
+
+Rn (Base Register): X9 
+
+Rt (Destination Register): X9 
+
+Immediate Field: 0 
+
+ 
+
+ADD X0, X9, X10 (R-type) 
+
+Op (Opcode): This is a register add instruction, so the opcode is for ADD. 
+
+Rn (Source Register 1): X9 
+
+Rm (Source Register 2): X10 
+
+Rd (Destination Register): X0 
+
+ 
+
+ 
+
+				 
+
+2.11: Assume that registers X0 and X1 hold the values 0x8000000000000000 and 0xD000000000000000, respectively. 
+
+A: X9 = X0 + X1 
+
+0x8000000000000000 + 0xD000000000000000 = 0x15000000000000000 
+
+X9 = 0x5000000000000000 
+
+B: The result is the desired result, and there has been no overflow. The addition does not exceed the range of values that can be represented in 64-bit two's complement arithmetic. 
+
+C: X9 = X0 - X1 
+
+X9 = 0x8000000000000000 – 0xD000000000000000 
+
+X9 = 0x8000000000000000 - 0xD000000000000000 
+
+   = 0x8000000000000000 + 0x3000000000000000 
+
+   = 0xB000000000000000 
+ 
+
+D: Desired result, no overflow in this case either. The subtraction stays within the valid 64-bit range. 
+
+ 
+
+E: X9 = 0x5000000000000000 + 0x8000000000000000 
+
+X9 = 0xD000000000000000 
+
+ 
+
+F: Desired result, no overflow in this case either. The result of the second addition is valid and within the 64-bit range. 
+ 
+ 
+
+ 
+
+2.12: 
+
+A: 
+
+You want to add the values in registers X0 and X1, and store the result in X9. 
+
+X0=12810X0 = 128_{10}X0=12810  
+
+The result of X0 + X1 would overflow if the result exceeds 263−12^{63} - 1263−1 or is less than −263-2^{63}−263. 
+
+To avoid overflow, the result of the sum should be within the valid range. This means: 
+
+X0+X1≤263−1andX0+X1≥−263X0 + X1 \leq 2^{63} - 1 \quad \text{and} \quad X0 + X1 \geq -2^{63}X0+X1≤263−1andX0+X1≥−263 
+
+Thus, the range of X1X1X1 that results in overflow would occur when: 
+
+X0+X1>263−1X0 + X1 > 2^{63} - 1X0+X1>263−1 or 
+
+X0+X1<−263X0 + X1 < -2^{63}X0+X1<−263 
+
+For the upper bound: 
+
+128+X1>263−1  ⟹  X1>263−1−128128 + X1 > 2^{63} - 1 \implies X1 > 2^{63} - 1 - 128128+X1>263−1⟹X1>263−1−128 X1>9,223,372,036,854,775,679X1 > 9,223,372,036,854,775,679X1>9,223,372,036,854,775,679 
+
+For the lower bound: 
+
+128+X1<−263  ⟹  X1<−263−128128 + X1 < -2^{63} \implies X1 < -2^{63} - 128128+X1<−263⟹X1<−263−128 X1<−9,223,372,036,854,775,936X1 < -9,223,372,036,854,775,936X1<−9,223,372,036,854,775,936 
+
+Overflow occurs when X1>9,223,372,036,854,775,679X1 > 9,223,372,036,854,775,679X1>9,223,372,036,854,775,679 or X1<−9,223,372,036,854,775,936X1 < -9,223,372,036,854,775,936X1<−9,223,372,036,854,775,936. 
+
+ 
+
+B: 
+
+This instruction subtracts X1X1X1 from X0X0X0. 
+
+To avoid overflow, the result of the subtraction should be within the valid range: 
+
+X0−X1≤263−1andX0−X1≥−263X0 - X1 \leq 2^{63} - 1 \quad \text{and} \quad X0 - X1 \geq -2^{63}X0−X1≤263−1andX0−X1≥−263 
+
+Thus, overflow occurs when: 
+
+X0−X1>263−1orX0−X1<−263X0 - X1 > 2^{63} - 1 \quad \text{or} \quad X0 - X1 < -2^{63}X0−X1>263−1orX0−X1<−263 
+
+For the upper bound: 
+
+128−X1>263−1  ⟹  −X1>263−1−128128 - X1 > 2^{63} - 1 \implies -X1 > 2^{63} - 1 - 128128−X1>263−1⟹−X1>263−1−128 X1<−9,223,372,036,854,775,679X1 < -9,223,372,036,854,775,679X1<−9,223,372,036,854,775,679 
+
+For the lower bound: 
+
+128−X1<−263  ⟹  −X1<−263−128128 - X1 < -2^{63} \implies -X1 < -2^{63} - 128128−X1<−263⟹−X1<−263−128 X1>9,223,372,036,854,775,936X1 > 9,223,372,036,854,775,936X1>9,223,372,036,854,775,936 
+
+Overflow occurs when X1<−9,223,372,036,854,775,679X1 < -9,223,372,036,854,775,679X1<−9,223,372,036,854,775,679 or X1>9,223,372,036,854,775,936X1 > 9,223,372,036,854,775,936X1>9,223,372,036,854,775,936. 
+
+ 
+
+C: 
+
+This instruction subtracts X0X0X0 from X1X1X1. 
+
+To avoid overflow, the result should be within the valid range: 
+
+X1−X0≤263−1andX1−X0≥−263X1 - X0 \leq 2^{63} - 1 \quad \text{and} \quad X1 - X0 \geq -2^{63}X1−X0≤263−1andX1−X0≥−263 
+
+Thus, overflow occurs when: 
+
+X1−X0>263−1orX1−X0<−263X1 - X0 > 2^{63} - 1 \quad \text{or} \quad X1 - X0 < -2^{63}X1−X0>263−1orX1−X0<−263 
+
+For the upper bound: 
+
+X1−128>263−1  ⟹  X1>263−1+128X1 - 128 > 2^{63} - 1 \implies X1 > 2^{63} - 1 + 128X1−128>263−1⟹X1>263−1+128 X1>9,223,372,036,854,775,935X1 > 9,223,372,036,854,775,935X1>9,223,372,036,854,775,935 
+
+For the lower bound: 
+
+X1−128<−263  ⟹  X1<−263+128X1 - 128 < -2^{63} \implies X1 < -2^{63} + 128X1−128<−263⟹X1<−263+128 X1<−9,223,372,036,854,775,680X1 < -9,223,372,036,854,775,680X1<−9,223,372,036,854,775,680 
+
+Overflow occurs when X1>9,223,372,036,854,775,935X1 > 9,223,372,036,854,775,935X1>9,223,372,036,854,775,935 or X1<−9,223,372,036,854,775,680X1 < -9,223,372,036,854,775,680X1<−9,223,372,036,854,775,680. 
+
+ 
+
+2.13: 
+
+	1000 1011 0000 0000 0000 0000 0000 00002 =8B00 000016   
+
+1000 1011 0000 0000 0000 0000 0000 00002  | first 11 bits are 10001011000 
+
+ 
+
+Bits [20:16] (Rm): 00000 → Register X0 
+
+Bits [15:10] (Shamt): 000000 → Shift amount 0 (not used in this case) 
+
+Bits [9:5] (Rn): 00000 → Register X0 
+
+Bits [4:0] (Rd): 00000 → Register X0 
+
+ADD X0, X0, X0 = 1000 1011 0000 0000 0000 0000 0000 0000₂ 
+
+ 
+
+2.14: 
+	 
+
+Opcode: The opcode for STUR is 11111000000₂ (as per LEGv8 instruction encoding). 
+
+DTAddr: The immediate offset is #32. Convert 32 to binary: 32₁₀ = 100000₂. In 9-bit format, it is 000100000₂. 
+
+Rn (Base Register): X10 is the base register. The register number for X10 is 1010₂. 
+
+Rt (Source Register): X9 is the register to be stored. The register number for X9 is 01001₂. 
+
+Op2: This field is set to 00₂ for STUR. 
+
+ 
+
+11111000000 000100000 00 01010 01001 
+
+1111 1000 0000 0001 0000 0000 1010 01001₂ 
+
+1111 1000 0000 0001 0000 0000 1010 01001₂ = F801 00A9₁₆ 
+
+Hexadecimal: F80100A9 
+
+ 
+
+2.15: 
+
+ 
+
+Opcode (op) = 0x658 
+
+Rm = 13 
+
+Rn = 15 
+
+Rd = 17 
+
+Shift amount (shamt) = 0 
+
+0x658=11001011000₂ 
+
+11001011000₂  
+
+ 
+
+Opcode = 11001011000₂ (which corresponds to ADD) 
+
+Rm = 13, convert this to 5-bit binary: 01101₂ 
+
+Rn = 15, convert this to 5-bit binary: 01111₂ 
+
+Rd = 17, convert this to 5-bit binary: 10001₂ 
+
+shamt = 0, which in 6 bits is 000000₂ 
+
+1100 1011 0000 1101 0000 0000 1111 10001₂ = CB0D00F1₁₆ 
+
+Instruction Type: R-type 
+
+Assembly Language Instruction: ADD X17, X15, X13 
+
+Binary Representation: 11001011000 01101 000000 01111 10001₂ 
+
+Hexadecimal Representation: 0xCB0D00F1 
+
+ 
+
+ 
+
+2.16: 
+ 
+0x7C2=11111000010₂   
+
+opcode is 11111000010₂ 
+
+ 
+
+11111000010 000000100 00 01100 00011 
+
+ 
+
+1111 1000 0100 0000 0100 0000 1100 00011₂ = F84040C3₁₆ 
+
+Instruction Type: D-type (Data Transfer) 
+
+Assembly Language Instruction: LDUR X3, [X12, #4] 
+
+Binary Representation: 11111000010 000000100 00 01100 00011₂ 
+
+Hexadecimal Representation: 0xF84040C3 
+
+ 
+
+2.18: 
+ 
+A:	his is equivalent to multiplying X10 by 24=162^4 = 1624=16. 
+
+X10=0x00000000AAAAAAAAX10 = 0x00000000AAAAAAAAX10=0x00000000AAAAAAAA 
+
+ 
+
+Shifting left by 4: 
+
+X12=0x00000000AAAAAAAA<<4=0x0000000AAAAAAAA0X12 = 0x00000000AAAAAAAA << 4 = 0x0000000AAAAAAAA0X12=0x00000000AAAAAAAA<<4=0x0000000AAAAAAAA0 
+
+2. ORR X12, X12, X11 
+
+The ORR (bitwise OR) instruction performs a bitwise OR between the contents of X12 and X11. 
+
+X12=0x0000000AAAAAAAA0X12 = 0x0000000AAAAAAAA0X12=0x0000000AAAAAAAA0 X11=0x1234567812345678X11 = 0x1234567812345678X11=0x1234567812345678 
+
+ 
+
+X12 = 0x1234567A12345678 
+
+ 
+
+B: X11=0x1234567812345678 
+
+X12=0x1234567812345678<<4=0x2345678123456780 
+
+X12 = 0x2345678123456780 
+
+ 
+
+C: 
+
+	X10=0x00000000AAAAAAAA 
+
+X12=0x00000000AAAAAAAA>>3=0x0000000015555555 
+
+ 
+
+X12=0x0000000015555555 Immediate=0xFEF=111111101112Immediate = 0xFEF = 11111110111₂Immediate=0xFEF=111111101112   
+
+ 
+
+After ANDI -> X12=0x0000000000000055 
+
+ 
+
+2.19: 
+
+ 
+
+LSR X12, X10, #11        ; X12 = X10 >> 11 (Bits 16-11 are now in X12[31-26]) 
+
+AND X12, X12, #0x3F      ; X12 = X12 & 0x3F (Mask to keep only bits 5-0) 
+
+MOV X13, #0xFCFFFFFF    ; X13 = 0xFCFFFFFF (Mask to clear bits 31-26) 
+
+AND X11, X11, X13        ; X11 = X11 & X13 (Clear bits 31-26 in X11) 
+
+LSL X12, X12, #26        ; X12 = X12 << 26 (Shift bits to align with bits 31-26) 
+
+ORR X11, X11, X12        ; X11 = X11 | X12 (Insert bits into X11) 
+
+ 
+
+2.20: 
+
+ 
+
+MVN X10, X11    ; X10 = ~X11 (bitwise NOT of X11) 
+
+ 
+
+MVN X10, X11 
+
+ 
+
+2.21: 
+
+ 
+
+LDR X12, [X13]        ; Load the value at address X13 (C[0]) into X12 
+
+LSL X11, X12, #4      ; Logical Shift Left X12 by 4 bits, store result in X11 
+
+ 
+
+ 
